@@ -1,0 +1,8 @@
+SELECT TIMESTAMP_TRUNC(iso_time, MONTH) AS month, AVG(usa_wind) 
+  OVER(PARTITION BY season
+  ORDER BY iso_time 
+  ROWS BETWEEN 5 PRECEDING AND 5 FOLLOWING
+  ) AS wind_speed_moving_average
+FROM `bigquery-public-data.noaa_hurricanes.hurricanes`
+WHERE season >= '1900'
+AND usa_wind IS NOT NULL
