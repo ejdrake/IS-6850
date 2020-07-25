@@ -1,0 +1,5 @@
+SELECT season,TIMESTAMP_TRUNC(iso_time, DAY) as date, usa_wind as wind_speed, usa_pressure as pressure, usa_sshs as category
+FROM `bigquery-public-data.noaa_hurricanes.hurricanes` 
+WHERE season >= '1900'
+and usa_wind IS NOT NULL
+ORDER BY 1
