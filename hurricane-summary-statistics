@@ -1,0 +1,6 @@
+SELECT season, COUNT(*) as num_storms, MIN(usa_wind) as min_wind, MAX(usa_wind) as max_wind, AVG(usa_wind) as avg_wind, APPROX_QUANTILES(usa_wind,2)[OFFSET(1)] as median_wind, STDDEV(usa_wind) as stddev_wind, 
+MIN(usa_pressure) as min_pressure, MAX(usa_pressure) as max_pressure, AVG(usa_pressure) as avg_pressure, APPROX_QUANTILES(usa_pressure,2)[OFFSET(1)] as median_pressure, STDDEV(usa_pressure) as stddev_pressure
+FROM `bigquery-public-data.noaa_hurricanes.hurricanes` 
+WHERE (season >= '1900')
+GROUP BY 1
+ORDER BY 1 
